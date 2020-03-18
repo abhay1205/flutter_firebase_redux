@@ -1,0 +1,144 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class SignInPage extends StatefulWidget {
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String _email, _password;
+
+  checkAuth() async {
+    _auth.onAuthStateChanged.listen((user) async {
+      if (user != null) {
+        Navigator.of(context).pushReplacementNamed('/home');
+      }
+    });
+  }
+
+  navToSignInPage() {
+    Navigator.of(context).pushReplacementNamed('/SigninPage');
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkAuth();
+  }
+
+  void sigin() async {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+    }
+    try {
+      FirebaseUser user = (await _auth.signInWithEmailAndPassword(
+              email: _email, password: _password))
+          .user;
+      List<String> userInfo = [
+        user.email.toString(),
+        user.displayName.toString(),
+        user.getIdToken().toString(),
+      ];
+      _storeUserData(userInfo);
+      if (user.email != null) {
+        Navigator.pushReplacementNamed(context, '/home');
+      }
+      ;
+    } catch (e) {
+      showError(e.message);
+    }
+  }
+
+  void _storeUserData(userInfo) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('email', userInfo[0]);
+    //prefs.setStringList('user', userInfo);
+    print('signIn page ${prefs.getString('email')}');
+  }
+
+  showError(String errMsg) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('ERROR'),
+            content: Text(errMsg),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orange,
+        title: Text('Log In'),
+        centerTitle: true,
+      ),
+      body: Container(
+          child: Center(
+        child: ListView(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.fromLTRB(10, 50, 10, 50),
+              child: Text("LOGIN",
+                  style: TextStyle(fontSize: 30, color: Colors.orange)),
+            ),
+            Container(
+              child: Form(
+                key: _formKey,
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      //email
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        child: TextFormField(
+                          decoration: InputDecoration(labelText: 'Email'),
+                          validator: (value) =>
+                              value.contains('@') ? null : 'Invalid Email',
+                          onSaved: (value) => _email = value,
+                        ),
+                      ),
+                      // password
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        child: TextFormField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Password'),
+                          onSaved: (value) => _password = value,
+                        ),
+                      ),
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
+                          child: RaisedButton(
+                            color: Colors.orange,
+                            onPressed: sigin,
+                            child: Text('Log In'),
+                          ))
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      )),
+    );
+  }
+}

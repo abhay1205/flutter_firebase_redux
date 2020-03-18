@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1081509773824",
+    "firebase_url": "https://reaust-78bcd.firebaseio.com",
+    "project_id": "reaust-78bcd",
+    "storage_bucket": "reaust-78bcd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081509773824:android:5fe0b68e1b6254579a0ee5",
+        "android_client_info": {
+          "package_name": "com.example.reduxLoginStruct"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081509773824-h8kl4sh543vvmh0l1trrans6roleum80.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.reduxLoginStruct",
+            "certificate_hash": "7eeb814dc7a450a37aa4e2a7c0310015f8dd9c7e"
+          }
+        },
+        {
+          "client_id": "1081509773824-fs068v6fm6f4n4qe02mfqj5h499lrq58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_9qwMkamFbJA9kz0uI6hbskmmGEN8i6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081509773824-fs068v6fm6f4n4qe02mfqj5h499lrq58.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

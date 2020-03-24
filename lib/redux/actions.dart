@@ -7,7 +7,7 @@ ThunkAction<AppState> getUserAction =  (Store<AppState> store) async {
   final prefs = await SharedPreferences.getInstance();
   final List<dynamic> storedUser = prefs.getStringList('user');
   final String user = storedUser!=null? prefs.getString('email'): null;
-  print('actions page $storedUser, $user');
+  // print('actions page $storedUser, $user');
   store.dispatch(GetUserAction(user));
 };
 

@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.fromLTRB(10, 40, 10, 20),
                 child: CircleAvatar(
                   backgroundColor: Colors.orange,
-                  backgroundImage: NetworkImage(''),
+                  // backgroundImage: NetworkImage(''),
                   radius: 40,
                 ),
               ),

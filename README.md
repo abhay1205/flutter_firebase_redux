@@ -1,16 +1,19 @@
-# reduxLoginStruct
+# Redux Login with custom Email and Password
 
-A new Flutter project.
+This project gives an idea how to implement redux architecture in flutter login logic.
+
+To know how to implement the login logic in a simple an easy way see my other repo flutterLogin
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+get the following dependecies
 
-A few resources to get you started if this is your first Flutter project:
+ -flutter_redux,
+ 
+ -redux_thunk,
+ 
+ -firebase_auth
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+ register your app on the firebase console
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ now you can fork this repo and build your project

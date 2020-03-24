@@ -1,4 +1,4 @@
-# Redux Login with custom Email and Password
+# Redux Login with custom Email and Password + Google Auth
 
 This project gives an idea how to implement redux architecture in flutter login logic.
 
@@ -13,6 +13,10 @@ get the following dependecies
  -redux_thunk,
  
  -firebase_auth
+ 
+ -flutter_auth_buttons
+ 
+ -google_sign_in
 
  register your app on the firebase console
 
